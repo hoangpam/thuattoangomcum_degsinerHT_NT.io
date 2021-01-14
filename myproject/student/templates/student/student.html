@@ -1,0 +1,1375 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+<!--    phần logo đầu trang-->
+    <link rel="apple-touch-icon" type="image/png" href="https://hufi.edu.vn/images/tt-tstt/untitled.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="shortcut icon" type="image/x-icon" href="https://hufi.edu.vn/images/tt-tstt/untitled.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="mask-icon" type="" href="https://hufi.edu.vn/images/tt-tstt/untitled.png" color="#111" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="{% static 'student/style.css' %}" rel="stylesheet">
+<!--    tự thiết kế-->
+    <title>Tư vấn chuyên ngành cho sinh viên</title>
+    <style>
+        #tableContainer {
+            overflow-y: scroll;
+        }
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td
+        {
+         font-size:revert;
+        }
+        .table-title{font-size: xx-large;}
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 13px;
+            margin: 40px 40px;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+<!--    phần menu-->
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Open+Sans";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
+/*global styles*/
+html {
+  height: 100%;
+}
+body {
+  background: #181818;
+  color: #fff;
+  height: 100%;
+  overflow: hidden;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*main menu*/
+.main-menu {
+  float: left;
+  position: absolute;
+  min-height: 100%;
+  width: 500px;
+  z-index: 1000;
+  -webkit-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  -moz-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+
+  -webkit-transform: translate(-336px, 0);
+  -moz-transform: translate(-336px, 0);
+  transform: translate(-336px, 0);
+}
+.clearfix {
+    clear: both;
+
+}
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+.main-menu.open {
+  -webkit-transform: translate(0, 0) skew(0);
+  -moz-transform: translate(0, 0) skew(0);
+  transform: translate(0, 0) skew(0);
+}
+.main-menu.open .main-menu-form {
+  -webkit-transform: skewX(-25deg);
+  -moz-transform: skewX(-25deg);
+  transform: skewX(-25deg);
+}
+.main-menu.open .main-menu-form:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: #528dd5;
+  box-shadow: 0px 0px 6px 1px rgba(93, 173, 226, 0.7);
+}
+.main-menu-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #528dd5;
+  z-index: 1001;
+  -webkit-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  -moz-transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+
+  -webkit-transform: skewX(-38deg);
+  -moz-transform: skewX(-38deg);
+  transform: skewX(-38deg);
+}
+
+.main-menu.open .main-menu-btn {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0s, visibility 0s;
+    -moz-transition: opacity 0s, visibility 0s;
+    transition: opacity 0s, visibility 0s;
+}
+
+/*main menu content*/
+.main-menu-content {
+  position: relative;
+  padding: 35px 55px 35px 25px;
+  font: normal 16px/1.25 'Open Sans';
+}
+.main-menu.open .main-menu-content {
+  z-index: 1002;
+}
+.main-menu-logo h2 {
+  font-size: 28px;
+  opacity: 0;
+}
+.main-menu.open .main-menu-logo h2 {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in .3s;
+  -moz-transition: opacity .5s ease-in .3s;
+  transition: opacity .5s ease-in .3s;
+}
+.main-menu-nav {
+  margin-top: 35px;
+}
+nav ul li a
+{
+ color:#fff;
+ text-transform:uppercase;
+ font-weight: bold;
+}
+
+  nav ul li a:hover {
+                    color: #ff0;
+                }
+  nav ul li ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 300px;
+                float: none;
+                background: #0974bc;
+                z-index: 99999;
+                display: none;
+            }
+
+                nav ul li ul li {
+                    margin-left: 0;
+                    padding: 5px 10px;
+                    border-bottom: 1px solid #fff;
+                    display: block;
+                }
+
+                    nav ul li ul li:last-child {
+                        border-bottom: none;
+                    }
+
+                nav ul li ul a {
+                    color: #fff;
+                    text-transform: none;
+                    font-weight: bold;
+                }
+
+    nav > ul > li:hover ul {
+        display: block;
+    }
+.main-menu.open .main-menu-nav a {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-transition: color .2s ease-in-out 0s, opacity .3s ease, transform .3s ease;
+  -moz-transition: color .2s ease-in-out 0s, opacity .3s ease, transform .3s ease;
+  transition: color .2s ease-in-out 0s, opacity .3s ease, transform .3s ease;
+  opacity: 1;
+}
+.main-menu-nav a {
+  opacity: 0;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: #ffffff;
+  -webkit-transform: translate(0, 100%);
+  -moz-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+}
+.main-menu-nav i {
+  color: #fff;
+  -webkit-transition: color .2s ease-in-out;
+  -moz-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+.main-menu.open .main-menu-nav a:hover {
+  color: #3498DB;
+  /*i don't care*/
+  -webkit-transition-delay: 0s !important;
+  -moz-transition-delay: 0s !important;
+  transition-delay: 0s !important;
+}
+.main-menu.open .main-menu-nav a.orange {
+  -webkit-transition-delay: .4s;
+  -moz-transition-delay: .4s;
+  transition-delay: .4s;
+}
+.main-menu.open .main-menu-nav a.yellow {
+  -webkit-transition-delay: .5s;
+  -moz-transition-delay: .5s;
+  transition-delay: .5s;
+}
+.main-menu.open .main-menu-nav a.green {
+  -webkit-transition-delay: .6s;
+  -moz-transition-delay: .6s;
+  transition-delay: .6s;
+}
+.main-menu.open .main-menu-nav a.purple {
+  -webkit-transition-delay: .7s;
+  -moz-transition-delay: .7s;
+  transition-delay: .7s;
+}
+.main-menu.open .main-menu-nav a.red {
+  -webkit-transition-delay: .8s;
+  -moz-transition-delay: .8s;
+  transition-delay: .8s;
+}
+.main-menu-nav a.orange:hover i {
+  color: #D35400;
+}
+.main-menu-nav a.yellow:hover i {
+  color: #F5AB35;
+}
+.main-menu-nav a.green:hover i {
+  color: #00B16A;
+}
+.main-menu-nav a.purple:hover i {
+  color: #9A12B3;
+}
+.main-menu-nav a.red:hover i {
+  color: #F64747;
+}
+
+/*toggle button*/
+.main-menu-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 38px;
+  right: 39px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #fbfbfb;
+  -webkit-transition: opacity .4s cubic-bezier(0.95, 0.05, 0.795, 0.035), visibility .4s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  -moz-transition: opacity .4s cubic-bezier(0.95, 0.05, 0.795, 0.035), visibility .4s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  transition: opacity .4s cubic-bezier(0.95, 0.05, 0.795, 0.035), visibility .4s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+
+  -webkit-transform: skew(38deg) rotate(38deg);
+  -moz-transform: skew(38deg) rotate(38deg);
+  transform: skew(38deg) rotate(38deg);
+
+}
+.main-menu-btn i {
+  -webkit-transform: rotate(-38deg);
+  -moz-transform: rotate(-38deg);
+  transform: rotate(-38deg);
+  color: #AEB6BF;
+}
+.main-menu-btn:hover i{
+  color: #3498DB;
+}
+
+/*close button*/
+.main-menu.open .main-menu-close {
+  opacity: 1;
+  -webkit-transition: color .2s ease, opacity 1s ease 1s, transform .3s ease 1s;
+  -moz-transition: color .2s ease, opacity 1s ease 1s, transform .3s ease 1s;
+  transition: color .2s ease, opacity 1s ease 1s, transform .3s ease 1s;
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.main-menu-close {
+  opacity: 0;
+  display: inline-block;
+  margin-top: 65px;
+  margin-left: 15px;
+  font-size: 18px;
+  color: #ffffff;
+  -webkit-transform: translate(0, 100%);
+  -moz-transform: translate(0, 100%);
+  transform: translate(0, 100%);
+}
+.main-menu-close:hover {
+  color: #A569BD;
+}
+
+/*main content*/
+.main-wrapper {
+  max-width: 15000px;
+  padding: 0 0px;
+  margin: 0 auto;
+  background: #ffffff;
+  font: normal 16px 'Open Sans';
+}
+
+.main-content {
+  padding: 45px 55px;
+}
+.main-content h4 {
+  font-size: 26px;
+  line-height: 1.25;
+  color: #3498DB;
+  text-align: center;
+}
+.main-content .posts li {
+  margin: 10px 0;
+}
+    </style>
+    <!--phần loading trang-->
+   <style>
+        :root{
+  /* animations constants */
+  --steps: 10;
+  --saturation: 80%;
+  --lightness: 60%;
+  --hue-offset: 320;
+  --duration: 5000ms;
+
+  /* generate some colors */
+  --color-01: hsl( calc( 360 / var(--steps) *  1 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-02: hsl( calc( 360 / var(--steps) *  2 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-03: hsl( calc( 360 / var(--steps) *  3 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-04: hsl( calc( 360 / var(--steps) *  4 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-05: hsl( calc( 360 / var(--steps) *  5 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-06: hsl( calc( 360 / var(--steps) *  6 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-07: hsl( calc( 360 / var(--steps) *  7 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-08: hsl( calc( 360 / var(--steps) *  8 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-09: hsl( calc( 360 / var(--steps) * 9 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-10: hsl( calc( 360 / var(--steps) * 10 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-11: hsl( calc( 360 / var(--steps) * 11 + var(--hue-offset)), var(--saturation), var(--lightness) );
+  --color-crayon: #202036;
+
+  /* build some backgrounds */
+  --bg-01-a: no-repeat left       0% top    / 11%   0% linear-gradient(to right, var(--color-01), var(--color-02));
+  --bg-01-b: no-repeat left       0% top    / 11% 100% linear-gradient(to right, var(--color-01), var(--color-02));
+  --bg-02-a: no-repeat left   11.11% bottom / 11%   0% linear-gradient(to right, var(--color-02), var(--color-03));
+  --bg-02-b: no-repeat left   11.11% bottom / 11% 100% linear-gradient(to right, var(--color-02), var(--color-03));
+  --bg-03-a: no-repeat left   22.22% top    / 11%   0% linear-gradient(to right, var(--color-03), var(--color-04));
+  --bg-03-b: no-repeat left   22.22% top    / 11% 100% linear-gradient(to right, var(--color-03), var(--color-04));
+  --bg-04-a: no-repeat left   33.33% bottom / 11%   0% linear-gradient(to right, var(--color-04), var(--color-05));
+  --bg-04-b: no-repeat left   33.33% bottom / 11% 100% linear-gradient(to right, var(--color-04), var(--color-05));
+  --bg-05-a: no-repeat left   44.44% top    / 11%   0% linear-gradient(to right, var(--color-05), var(--color-06));
+  --bg-05-b: no-repeat left   44.44% top    / 11% 100% linear-gradient(to right, var(--color-05), var(--color-06));
+  --bg-06-a: no-repeat left   55.55% bottom / 11%   0% linear-gradient(to right, var(--color-06), var(--color-07));
+  --bg-06-b: no-repeat left   55.55% bottom / 11% 100% linear-gradient(to right, var(--color-06), var(--color-07));
+  --bg-07-a: no-repeat left   66.66% top    / 11%   0% linear-gradient(to right, var(--color-07), var(--color-08));
+  --bg-07-b: no-repeat left   66.66% top    / 11% 100% linear-gradient(to right, var(--color-07), var(--color-08));
+  --bg-08-a: no-repeat left   77.77% bottom / 11%   0% linear-gradient(to right, var(--color-08), var(--color-09));
+  --bg-08-b: no-repeat left   77.77% bottom / 11% 100% linear-gradient(to right, var(--color-08), var(--color-09));
+  --bg-09-a: no-repeat left   88.88% top    / 11%   0% linear-gradient(to right, var(--color-09), var(--color-10));
+  --bg-09-b: no-repeat left   88.88% top    / 11% 100% linear-gradient(to right, var(--color-09), var(--color-10));
+  --bg-10-a: no-repeat left   99.99% bottom / 11%   0% linear-gradient(to right, var(--color-10), var(--color-11));
+  --bg-10-b: no-repeat left   99.99% bottom / 12% 100% linear-gradient(to right, var(--color-10), var(--color-11));
+}
+
+.rainbow-marker-loader {
+  height:4rem;
+  width:20rem;
+  max-width:100%;
+  border:.5rem solid var(--color-crayon);
+  border-radius:.5rem;
+  animation: infinite alternate rainbow-fill var(--duration) ease-in-out;
+  box-sizing:border-box;
+  position:relative;
+  margin:1rem;
+  background:
+    var(--bg-01-a),
+    var(--bg-02-a),
+    var(--bg-03-a),
+    var(--bg-04-a),
+    var(--bg-05-a),
+    var(--bg-06-a),
+    var(--bg-07-a),
+    var(--bg-08-a),
+    var(--bg-09-a),
+    var(--bg-10-a);
+}
+
+.rainbow-marker-loader::after{
+  content:'';
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  transform-origin:left center;
+  border-radius:.5rem;
+  box-sizing:border-box;
+  margin-top:-7.5%;
+  margin-left:-2.5%;
+  animation: infinite alternate move-marker var(--duration) ease-in-out;
+  background:
+    no-repeat left   0% top    / 3rem  50% linear-gradient(to bottom right, transparent, transparent 40%, var(--color-crayon) 40%),
+    no-repeat left   0% bottom / 3rem  50% linear-gradient(to top right, transparent, transparent 40%, var(--color-crayon) 40%),
+    no-repeat left 3rem bottom / 100% 100% linear-gradient( var(--color-crayon), var(--color-crayon))
+}
+
+@keyframes move-marker{
+  10%{
+    transform: translate(5%, 100%) rotate(2.5deg);
+  }
+  20%{
+    transform: translate(20%, 0) rotate(-5deg);
+  }
+  30%{
+    transform: translate(30%, 100%) rotate(2.5deg);
+  }
+  40%{
+    transform: translate(40%, 0) rotate(-5deg);
+  }
+  50%{
+    transform: translate(50%, 100%) rotate(2.5deg);
+  }
+  60%{
+    transform: translate(60%, 0) rotate(-5deg);
+  }
+  70%{
+    transform: translate(70%, 100%) rotate(2.5deg);
+  }
+  80%{
+    transform: translate(80%, 0) rotate(-5deg);
+  }
+  90%{
+    transform: translate(90%, 100%) rotate(2.5deg);
+  }
+  100%{
+    transform: translate(100%, 0) rotate(-5deg);
+  }
+}
+
+@keyframes rainbow-fill{
+  0%{
+    background:
+      var(--bg-01-a),
+      var(--bg-02-a),
+      var(--bg-03-a),
+      var(--bg-04-a),
+      var(--bg-05-a),
+      var(--bg-06-a),
+      var(--bg-07-a),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  10%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-a),
+      var(--bg-03-a),
+      var(--bg-04-a),
+      var(--bg-05-a),
+      var(--bg-06-a),
+      var(--bg-07-a),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  20%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-a),
+      var(--bg-04-a),
+      var(--bg-05-a),
+      var(--bg-06-a),
+      var(--bg-07-a),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  30%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-a),
+      var(--bg-05-a),
+      var(--bg-06-a),
+      var(--bg-07-a),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  40%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-b),
+      var(--bg-05-a),
+      var(--bg-06-a),
+      var(--bg-07-a),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  50%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-b),
+      var(--bg-05-b),
+      var(--bg-06-a),
+      var(--bg-07-a),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  60%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-b),
+      var(--bg-05-b),
+      var(--bg-06-b),
+      var(--bg-07-a),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  70%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-b),
+      var(--bg-05-b),
+      var(--bg-06-b),
+      var(--bg-07-b),
+      var(--bg-08-a),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  80%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-b),
+      var(--bg-05-b),
+      var(--bg-06-b),
+      var(--bg-07-b),
+      var(--bg-08-b),
+      var(--bg-09-a),
+      var(--bg-10-a);
+  }
+  90%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-b),
+      var(--bg-05-b),
+      var(--bg-06-b),
+      var(--bg-07-b),
+      var(--bg-08-b),
+      var(--bg-09-b),
+      var(--bg-10-a);
+  }
+  100%{
+    background:
+      var(--bg-01-b),
+      var(--bg-02-b),
+      var(--bg-03-b),
+      var(--bg-04-b),
+      var(--bg-05-b),
+      var(--bg-06-b),
+      var(--bg-07-b),
+      var(--bg-08-b),
+      var(--bg-09-b),
+      var(--bg-10-b);
+  }
+}
+
+
+/* for demo */
+<!--{#body{-->
+<!--  display:flex;-->
+<!--  flex-direction:column;-->
+<!--  align-items:center;-->
+<!--  justify-content:center;-->
+<!--  min-height:100vh;-->
+<!--  padding:1rem 1rem 2rem 1rem;-->
+<!--  box-sizing:border-box;-->
+
+<!--}#}-->
+
+<!--{#.title{-->
+<!--  color:var(&#45;&#45;color-crayon);-->
+<!--  font-size:1.5rem;-->
+<!--  font-family: 'M PLUS Rounded 1c', sans-serif;-->
+<!--  text-transform:uppercase;-->
+<!--  letter-spacing:1px;-->
+<!--}#}-->
+    </style>
+</head>
+<body>
+<!--danh mục menu-->
+    <div class="main-menu">
+  <div class="main-menu-form">
+    <div class="main-menu-btn"><i class="fa fa-bars" style="color:white;"></i></div>
+  </div>
+  <div class="main-menu-content">
+     <nav >
+        <!-- main logo -->
+        <div class="main-menu-logo">
+              <p style="color:white;">MENU</p>
+        </div>
+        <!-- navigation -->
+        <ul class="main-menu-nav" >
+          <li><a href="#" class="orange"><i class="fa fa-home fa-fw"></i>&nbsp; Tổng thể</a></li>
+          <li><a href="#" class="yellow"><i class="fa fa-book fa-fw front"></i>&nbsp; Tư vấn</a></li>
+          <li><a href="#" class="green"><i class="fa fa-folder fa-fw"></i>&nbsp; Điểm</a></li>
+          <li><a href="#" class="purple"><i class="fa fa-envelope fa-fw"></i>&nbsp; Liên hệ</a></li>
+          <li><a href="#" class="red"><i class="fa fa-users fa-fw"></i>&nbsp; Khoa</a></li>
+            <li><a href="/" class="red"><i class="fa fa-dribbble fa-fw"></i>&nbsp; Đăng xuất</a></li>
+        </ul>
+
+        <a href="#" class="main-menu-close"><i class="fa fa-close"></i>&nbsp; Đóng menu</a>
+     </nav>
+  </div>
+</div>
+    <div class="main-wrapper">
+        <div class="main-content">
+            <div style="display:flex;
+             flex-direction:column;
+             align-items:center;
+              justify-content:center;
+              min-height:5vh;
+              padding:1rem 1rem 2rem 1rem;
+              box-sizing:border-box;">
+                <h1 class="title" style="color:var(&#45;&#45;color-crayon);
+                  font-size:30px;
+                  font-family: 'M PLUS Rounded 1c', sans-serif;
+                  text-transform:uppercase;
+                  letter-spacing:1px;"> Phân chuyên ngành</h1>
+                <div class="rainbow-marker-loader" ></div>
+            </div>
+                <p>Tên sinh viên: {{name}}</p>
+    <input id="masv" type="hidden" value="{{masv}}">
+    <input id="cndata" type="hidden" value="{{data}}">
+    <input id="cndata_index" hidden value="{{cndata}}">
+    <input type="hidden" id="monhoc_data" value='{{ monhoc }}'>
+
+    <div class="container">
+       <div class="form-inline navi">
+          <select class="form-control" id="sel1">
+             <option>Chọn khóa đào tạo</option>
+          </select>
+          <select class="form-control" id="sel2" style=" visibility: hidden;">
+          </select>
+          <button type="button" id="showmark" class="btn btn-success">Hiển thị bảng điểm</button>
+          <button type="button" id="subjectfilter" class="btn btn-success">Lọc môn</button>
+                <!-- ===================================================== -->
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                 <img src="https://firebasestorage.googleapis.com/v0/b/daqltrasua.appspot.com/o/add_20px.png?alt=media&token=b8278249-07a0-4cd5-94b2-4599181aa7ae">   Thêm
+          </button>
+
+                <!-- The Modal -->
+          <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title"> {{name}}</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <p id="addinform" style="text-align: center;"></p>
+                        <!-- Modal body -->
+                        <!-- <input type="hidden" id="monhoc_data" value='{{ monhoc }}'> -->
+                        <!-- <input type="hidden" id="sinhvien_data" value="{{ sinhvien }}"> -->
+                        <div class="modal-body">
+
+                            <form action="/action_page.php">
+                                <div class="form-group">
+                                    <label for="sel1">Khóa đào tạo</label>
+                                    <select class="form-control" id="add1" name="makdt">
+                                        {% for x in khoadaotao %}
+                                        <option value="{{x.makdt}}">{{x.makdt}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sel1">Chuyên ngành</label>
+                                    <select class="form-control" id="add2" name="macn">
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sel1">Môn học</label>
+                                    <select class="form-control" id="monhocinput" name="mamh">
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" id="mssv" value="{{masv}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="z">Điểm:</label>
+                                    <input type="number" max="10" class="form-control" id="dieminput" name="z">
+                                </div>
+                            </form>
+                        </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" id="add_btn" class="btn btn-success">Nhập điểm</button>
+                    </div>
+
+                </div>
+                    </div>
+          </div>
+
+            </div>
+
+            <!-- ===================================================== -->
+
+
+
+                        <button type="button" id="suggest" class="btn btn-success">Gợi ý</button>
+                    </div>
+            <div class="card">
+                              <div class="card-header">
+                                  <p class="card-title" >Chi tiết thông tin</p>
+                              </div>
+                <div class="card-body table-responsive p-0" id="showtable">
+                {{inform}}
+                <table id="res" class="table table-hover text-nowrap"></table>
+            </div>
+            </div>
+
+    </div>
+
+    </div>
+</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+<script type="text/javascript">
+    $('#btnShowKmean').click(function () {
+        {#console.log('ass')#}
+        {#console.log($('#typeR').val());#}
+
+        {#document.getElementById("result").innerHTM = '';#}
+
+        let R = $('#typeR').val();
+        {#let K = $('#typeK').val();#}
+
+        if (R.trim() === "") {
+
+            alert('R và K không được để trống');
+
+            return;
+        }
+        {#console.log(R);#}
+        {#console.log(K);#}
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+        $.ajax({
+            type: 'POST',
+            url: '/kmean',
+            data: {
+                'typeR': R,
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'table_name': $('#tableName').text(),
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log('success');
+                console.log(response);
+
+
+                var out = "<table border ='1' ><tr>";
+                out += '<th>Cum</th>';
+                out += '<th>Ma Sinh vien</th>';
+                out += '<th>Khoang cach den tam cum</th>';
+
+                out += '</tr>';
+
+
+                {#console.log(response['cum']);#}
+                len = response['len'];
+                cum = response['cum'];
+                maSv = response['ma_SV'];
+                kc = response['kc_den_tam_cum'];
+                console.log(cum);
+
+                for (i = 0; i < len; i++) {
+                    out += '<tr>';
+                    out += '<td >' + cum[i] + '</td>';
+                    out += '<td >' + maSv[i] + '</td>';
+                    out += '<td >' + kc[i] + '</td>';
+                    out += '</tr>';
+                }
+                out += "</table>";
+                document.getElementById("tableContainer").innerHTML = out;
+
+            },
+            error: function (response) {
+                console.log('error');
+                // alert the error if any error occured
+                {#alert(response["responseJSON"]["error"]);#}
+            }
+        })
+    });
+
+
+    $('#btnShowPoint').click(function () {
+
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+        {#console.log(maKhoa)#}
+        {#console.log(maChuyenNganh)#}
+        $.ajax({
+            type: 'POST',
+            url: '/showpoint',
+            data: {
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log('vao success');
+                let data = response['data'];
+                let numRow = response["num_row"];
+                let numCol = response["num_col"];
+                var out = "<table border ='1'>";
+                for (i = 0; i < numRow; i++) {
+
+
+                    if (i === 0) {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<th>' + value + '</th>';
+                        }
+                        out += '</tr>';
+                    } else {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<td ><div contenteditable>' + value + '</div></td>';
+                            {#out += '<td>' + data[i][j] + '</td>';#}
+                        }
+                        out += '</tr>';
+                    }
+                }
+                out += "</table>";
+                document.getElementById("tableContainer").innerHTML = out;
+
+
+            },
+            error: function (response) {
+            }
+        })
+
+
+    });
+
+    $('#btnFilterSubject').click(function () {
+
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+
+        console.log(maKhoa);
+        console.log(maChuyenNganh);
+        $.ajax({
+            type: 'POST',
+            url: '/filterpoint',
+            data: {
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log('vao success');
+                console.log(response);
+                {#print(response)#}
+                let data = response['data'];
+                let numRow = response["num_row"];
+                let numCol = response["num_col"];
+                var out = "<table border ='1'>";
+                for (i = 0; i < numRow; i++) {
+
+
+                    if (i === 0) {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<th>' + value + '</th>';
+                        }
+                        out += '</tr>';
+                    } else {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<td ><div contenteditable>' + value + '</div></td>';
+                            {#out += '<td>' + data[i][j] + '</td>';#}
+                        }
+                        out += '</tr>';
+                    }
+                }
+                out += "</table>";
+                document.getElementById("tableContainer").innerHTML = out;
+
+
+            },
+            error: function (response) {
+                console.log('vao error');
+                {#console.log(response)#}
+                let data = response['data'];
+                let numRow = response["row"];
+                let numCol = response["col"];
+
+
+                var out = "<table border ='1' ><tr>";
+
+                {#var a = JSON.parse(response);#}
+                console.log(a);
+                for (i = 0; i < numRow; i++) {
+                    row = data[0];
+                    {#console.log(row)#}
+                }
+            }
+        })
+
+    });
+
+    $('#btnSaveCenterKC').click(function () {
+
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+        $.ajax({
+            type: 'POST',
+            url: '/savepointStudent',
+            data: {
+                'numrow' : 1,
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                if (response['status'] === 200) {
+                    alert('Lưu thành công');
+                }
+
+            },
+            error: function (response) {
+                console.log('vao error');
+                {#console.log(response)#}
+                let data = response['data'];
+                let numRow = response["row"];
+                let numCol = response["col"];
+
+
+                var out = "<table border ='1' ><tr>";
+
+                {#var a = JSON.parse(response);#}
+                console.log(a);
+                for (i = 0; i < numRow; i++) {
+                    row = data[0];
+                    {#console.log(row)#}
+                }
+            }
+        })
+
+
+    })
+
+
+    $('#btnSuggest').click(function () {
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+
+        console.log(maKhoa);
+        console.log(maChuyenNganh);
+        $.ajax({
+            type: 'POST',
+            url: '/suggest',
+            data: {
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+
+
+                console.log(response)
+
+                arrayLocationTeacher = response['locationTeacher'];
+                numrow = response['numrow'];
+
+                 var out = "<table border ='1' ><tr>";
+                //out += '<th>Ma CN</th>';
+                //out += '<th>Khoang cach</th>';
+                //out += '</tr>';
+
+                var min_distances = [];
+
+                for (i = 0; i< numrow; i++){
+                    console.log(arrayLocationTeacher[i])
+
+                    let row = arrayLocationTeacher[i]
+                    //console.log(row)
+                     out += '<tr>';
+                    //out += '<td >' + row[2] + '</td>';
+                    //out += '<td >' + row[1] + '</td>';
+                    //out += '</tr>';
+                    min_distances.push(row[1]);
+                }
+                var min_distace = Math.min(...min_distances);
+                //out += "</table>";
+
+                document.getElementById("tablelocationTeacher").innerHTML = out;
+
+
+                var out = '<dl>' +
+                    '<dt><h1 style="color: red;">Khuyễn khích bạn vào chuyên ngành: '+'<mark> '+ response['result']['TenCN']+'</mark> ' + '</h1>'+ '</dt>' +
+                    //'<dt><h1 style="color: red;">Khuyễn khích vào chuyên ngành: ' + response['result']['TenCN'] + '</h1>'+ '</dt>' +
+                    // '<dt>Khoảng cách : ' + response['result']['Min'] + '</dt>' +
+                    //'<dt>Khoảng cách nhỏ nhất : ' + min_distace + '</dt>' +
+                    '</dl>';
+
+                document.getElementById("tableContainer").innerHTML = out;
+
+            },
+            error: function (response) {
+                console.log('vao error');
+            }
+        })
+    })
+
+</script>
+<!--phần viết động cho loading-->
+<script>
+    var MainMenu = (function() {
+    var MainMenu = function(config) {
+        config = config || {};
+        this.toggleBtn = $(config.toggleBtn);
+        this.menu = $(config.menu);
+        this.close = $(config.close);
+
+        this.init();
+        config = null;
+    };
+    // public interface
+    MainMenu.prototype = {
+        constructor: MainMenu,
+        init: function() {
+            this.eventManager();
+        },
+        eventManager: function() {
+            this.toggleBtn.on('click.openMenu', onButtonClickHandler.bind(this));
+            this.close.on('click.closeMenu', onCloseClickHandler.bind(this));
+        }
+    };
+    // private interface
+    function onButtonClickHandler(menu, evt) {
+        if (!this.menu.hasClass('open')) {
+            this.menu.addClass('open');
+        };
+
+    }
+
+    function onCloseClickHandler(evt) {
+        this.menu.removeClass('open')
+    }
+
+    function onDocumentClickHandler(evt) {
+        var $target = $(evt.target);
+
+        if (!$target.closest(this.menuForm).length && !$target.closest(this.menuContent).length && this.menu.hasClass('open')) {
+            this.menu.removeClass('open')
+        }
+    }
+
+    return MainMenu;
+})();
+
+
+$(document).ready(function() {
+    var mainMenu = new MainMenu({
+        menu: '.main-menu',
+        toggleBtn: '.main-menu-btn',
+        close: '.main-menu-close'
+    });
+});
+</script>
+<script>
+    window.addEventListener('load', function(){
+
+
+        add_btn.onclick = function(){
+            makdt = add1.value;
+            macn = add2.value;
+            masv = mssv.value;
+            mamh = monhocinput.value;
+            diem = dieminput.value;
+            if (makdt&&macn&&masv&&mamh&&diem){
+                obj = {
+                    'makdt': makdt,
+                    'macn': macn,
+                    'masv': masv,
+                    'mamh': mamh,
+                    'diem': diem
+                }
+                console.log(obj);
+                var xhttp = new XMLHttpRequest();
+                xhttp.open('POST', "{% url 'student_add' %}");
+                xhttp.setRequestHeader("Content-type", "text/plain");
+                xhttp.send(JSON.stringify(obj));
+                xhttp.onload = () => {
+                    x = JSON.parse(xhttp.response);
+                    addinform.innerText = x['inform'];
+                }
+            } else {
+                alert("Nhập đủ thông tin!");
+            }
+        }
+
+
+        // add thong tin khoa hoc
+        cn = JSON.parse(cndata_index.value);
+        kdt1 = cn.filter((obj)=>{
+            if (obj['makdt'] == "KDT1"){
+                return obj;
+            }
+        })
+        kdt1 = kdt1.reduce((a, obj) => {
+            return a + `<option value="${obj.macn}">${obj.tencn}</option>`
+        }, "")
+        kdt2 = cn.filter((obj)=>{
+            if (obj['makdt'] == "KDT2"){
+                return obj;
+            }
+        })
+        kdt2 = kdt2.reduce((a, obj) => {
+            return a + `<option value="${obj.macn}">${obj.tencn}</option>`
+        }, "")
+        // add mon hoc
+        monhocdt = JSON.parse(monhoc_data.value);
+
+        document.querySelector('#add2').innerHTML = kdt1;
+        // document.querySelector('#monhocinput').innerHTML = monhoc_kdt1;
+        document.querySelector('#add1').onchange = function(){
+            x = document.querySelector('#add2');
+            if (this.value == "KDT1"){
+                x.innerHTML = kdt1;
+            } else {
+                x.innerHTML = kdt2;
+            }
+        }
+        document.querySelector('#add2').onchange = function(){
+            kdt_id = document.querySelector('#add1').value;
+            cn_id = this.value;
+            str = "";
+            monhocdt.forEach((item)=>{
+                if (item['macn']==cn_id && item['makdt']==kdt_id){
+                    str = str + `<option value="${item.mamh}">${item.tenmh}</option>`
+                }
+            })
+            document.querySelector('#monhocinput').innerHTML = str;
+        }
+    })
+</script>
+<!--  --------------------------------------------- -->
+<script>
+    window.onload = function(){
+        cndata = JSON.parse(cndata.value);
+        keys = Object.keys(cndata);
+        kdt = keys.reduce((a, item) => {
+            return a + `<option value=${item}>${item}</option>`
+        }, '')
+        console.log(kdt);
+        sel1.innerHTML += kdt;
+        sel1.onchange = function(){
+            this.querySelectorAll('option')[0].disabled = true;
+            kdt = this.value;
+            arr = cndata[kdt];
+            chuyennganh = arr.reduce((a,element) => {
+                return a + `<option value=${Object.keys(element)[0]}>${Object.values(element)[0]}</option>`
+            }, '');
+            console.log(chuyennganh);
+            sel2.innerHTML = chuyennganh;
+        }
+        // Show diem hoc sinh
+        showmark.onclick = function(){
+            makdt = sel1.value;
+            machn = sel2.value;
+            msv = masv.value;
+            var xhttp = new XMLHttpRequest();
+                xhttp.open('GET', `{% url 'mark_student' %}?macn=${machn}&makdt=${makdt}&masv=${msv}`);
+
+                xhttp.send();
+                xhttp.onload = () => {
+                    res.innerHTML = "";
+                    rs = JSON.parse(xhttp.response);
+                    header = `<tr><th>Môn học</th><th>Điểm</th></tr>`
+                    res.insertAdjacentHTML("beforeEnd", header);
+                    rs.forEach(ele => {
+                        str = `<tr><td>${ele['tenmon']}</td><td>${ele['diem']}</td></tr>`
+                        res.insertAdjacentHTML("beforeEnd", str);
+                    });
+
+                }
+
+
+        }
+
+
+    }
+
+    document.querySelector('#subjectfilter').onclick = function(){
+            machns = sel2.querySelectorAll("option");
+            x = [];
+            machns.forEach((option)=>{
+                x.push(option.value);
+            })
+            machn = JSON.stringify(x);
+            // machn = document.querySelector("#sel2").value;
+            msv = masv.value;
+            console.log(machn, msv);
+            // macn = document.querySelector("#sel1").value;
+            // console.log(macn);
+            var xhttp = new XMLHttpRequest();
+                xhttp.open('GET', `{% url 'getmark_filter_sv' %}?macn=${machn}&action=filter&masv=${masv.value}&makdt=${sel1.value}`);
+
+                xhttp.send();
+                xhttp.onload = () => {
+                    rs = JSON.parse(xhttp.response);
+                    console.log(rs);
+                    cn = JSON.parse(cndata_index.value);
+                    tencn = [];
+                    cn.forEach((obj)=>{
+                        tencn.push(obj['tencn']);
+                    })
+                    // console.log(tencn);
+                    final_str = "";
+                    rs.forEach((rs, index)=>{
+                        monhoc = rs.pop(rs.length-1);
+                        // console.log(monhoc);
+                        n = monhoc.length;
+                        header = `<tr><th colspan="10">${tencn[index]}</th></tr>`;
+                        // header = `<p>${tencn[index]}</p>`;
+                        header = header + `<tr><th></th><th>STT</th><th>Ma SV</th><th>Ho dem</th><th>Ten</th>`
+                        for (let i=0; i<n; i++){
+                            header = header + `<td>${monhoc[i]}</th>`
+                        }
+                        header = header + "</tr>"
+                        // console.log(rs);
+                        str= header;
+                        rs.forEach((hs, i) => {
+                            str =str + `<tr><td><input class="check" type="checkbox"></td><td>${i}</td><td>${hs['sv']['masv']}</td><td>${hs['sv']['ho']}</td><td>${hs['sv']['ten']}</td>`
+                            monhoc.forEach(tenmon => {
+                                str = str + `<td><input disabled value='${hs[Object.keys(hs)[0]][tenmon]}'></td>`
+                            })
+                        });
+                        str = str + "</tr>"
+                        final_str += str;
+                    })
+
+                    // console.log(str);
+                    res.innerHTML = final_str;
+                    checkboxes = document.querySelectorAll('.check');
+                    checkboxes.forEach((node)=>{
+                        node.onchange = function(){
+                            inputs = this.parentNode.parentNode.querySelectorAll('input');
+                            n = inputs.length;
+                            if (this.checked){
+                                for (let i=1; i < n; i++){
+                                    inputs[i].disabled = false;
+                                }
+                            } else {
+                                for (let i=1; i < n; i++){
+                                    inputs[i].disabled = true;
+                                }
+                            }
+                        }
+                    })
+                }
+    }
+
+    document.querySelector('#suggest').onclick = function(){
+            machns = sel2.querySelectorAll("option");
+            makdt = sel1.value;
+            console.log(makdt);
+            x = [];
+            machns.forEach((option)=>{
+                x.push(option.value);
+            })
+            machn = JSON.stringify(x);
+            // machn = document.querySelector("#sel2").value;
+            msv = masv.value;
+            console.log(machn, msv);
+            // macn = document.querySelector("#sel1").value;
+            // console.log(macn);
+            var xhttp = new XMLHttpRequest();
+                xhttp.open('GET', `{% url 'getmark_filter_sv' %}?macn=${machn}&action=suggest&masv=${masv.value}&makdt=${makdt}`);
+
+                xhttp.send();
+                xhttp.onload = () => {
+                    rs = JSON.parse(xhttp.response);
+                    let suggest = '';
+                    res.innerHTML = `Chuyên ngành gợi ý: ${rs['suggest']}`;
+                }
+    }
+
+
+</script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

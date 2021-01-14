@@ -1,0 +1,19 @@
+.navi {
+    margin-top: 15px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+/* .navi > button {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #FF0000;
+} */
+
+.showtable {
+    font-size: 0.8rem;
+    /* width: 60%;
+    overflow-x: scroll;
+     */
+}

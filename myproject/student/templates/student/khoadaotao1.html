@@ -1,0 +1,755 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin kmean</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  các phần mẫu template-->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static "fontawesome-free/css/all.min.css" %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{% static 'tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static "icheck-bootstrap/icheck-bootstrap.min.css" %}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{% static "jqvmap/jqvmap.min.css" %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css'  %}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static "overlayScrollbars/css/OverlayScrollbars.min.css" %}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static "daterangepicker/daterangepicker.css" %}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{% static "summernote/summernote-bs4.css" %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<!--    tự thiết kế-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="{% static 'student/style.css' %}" rel="stylesheet">
+    <style>
+        #tableContainer {
+            overflow-y: scroll;
+        }
+
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 13px;
+            margin: 40px 40px;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td
+        {
+         font-size:large;
+        }
+    </style>
+<!--phần logo đầu trang -->
+  <link rel="apple-touch-icon" type="image/png" href="https://hufi.edu.vn/images/tt-tstt/untitled.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="shortcut icon" type="image/x-icon" href="https://hufi.edu.vn/images/tt-tstt/untitled.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="mask-icon" type="" href="https://hufi.edu.vn/images/tt-tstt/untitled.png" color="#111" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<!--phần tiêu đề menu nằm ở trên-->
+ <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+      </ul>
+
+      <h4 style="margin-left: 10px; margin-top: 5px;">Khoá đào tạo</h4>
+
+      <ul class="navbar-nav ml-auto">
+
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+          <i class="fas fa-cog"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-user-edit mr-2"></i> Cập nhật thông tin
+          </a>
+
+          <div class="dropdown-divider"></div>
+          <a href="/" class="dropdown-item">
+            <i class="fas fa-power-off mr-2"></i> Đăng xuất
+          </a>
+          <div class="dropdown-divider"></div>
+        </div>
+      </li>
+    </ul>
+
+    </nav>
+<!--phần danh sách menu nằm ở ngang-->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link">
+        <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+        <span class="brand-text font-weight-light">Quản lý sinh viên</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">Admin</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+
+              <a href="#" class="nav-link {% if request.path == admin_home %} active {% endif %}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Tổng thể
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+
+              <a href="{% url 'index' %}" class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
+                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                <p>
+                  Bảng điểm sinh viên
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+
+              <a href="{% url 'khoadaotao' %}" class="nav-link {% if request.path == add_staff %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Khoá đào tạo
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+
+              <a href="{%url 'chuyennganh'%}" class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
+                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                <p>
+                  Chuyên ngành
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+
+              <a href="{%url 'ctdaotao'%}" class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
+                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                <p>
+                  Chương trình đào tạo
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+
+              <a href="{%url 'nguoidung'%}" class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
+                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                <p>
+                  Quản lí người dùng
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+
+              <a href="{%url 'tuvan'%}" class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
+                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                <p>
+                  Thông tin tư vấn
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+<!--phần chuẩn bị hiện lưới-->
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">
+                {% block page_title %}
+                {% endblock page_title %}
+              </h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      {% block main_content %}
+        <input id="cndata" hidden value="{{cndata}}">
+
+        <div class="form-inline navi">
+            <!-- <button type="button" class="btn btn-success">Thêm</button> -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                <img src="https://firebasestorage.googleapis.com/v0/b/daqltrasua.appspot.com/o/add_20px.png?alt=media&token=b8278249-07a0-4cd5-94b2-4599181aa7ae"> Thêm
+            </button>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title"> {{name}}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <p id="addinform" style="text-align: center;"></p>
+            <!-- Modal body -->
+            <!-- <input type="hidden" id="monhoc_data" value='{{ monhoc }}'> -->
+            <!-- <input type="hidden" id="sinhvien_data" value="{{ sinhvien }}"> -->
+            <div class="modal-body">
+
+                <form action="/action_page.php">
+
+                    <div class="form-group">
+                        <label for="z">Mã khóa đào tạo:</label>
+                        <input type="text" class="form-control" id="c_makdt" name="z">
+                    </div>
+                    <div class="form-group">
+                        <label for="z">Tên khóa đào tạo:</label>
+                        <input type="text" class="form-control" id="c_tenkdt" name="z">
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" id="add_btn" class="btn btn-info"><img src="https://firebasestorage.googleapis.com/v0/b/daqltrasua.appspot.com/o/add_20px.png?alt=media&token=b8278249-07a0-4cd5-94b2-4599181aa7ae"> Thêm</button>
+            </div>
+
+        </div>
+        </div>
+
+    </div>
+                <button type="button" id="del" class="btn btn-warning"><img src="https://firebasestorage.googleapis.com/v0/b/daqltrasua.appspot.com/o/delete_bin_20px.png?alt=media&token=b68ec52e-698d-45bb-800f-b63b95e0c82e">Xóa</button>
+                <button type="button" id="update"class="btn btn-success">Sửa</button>
+                <button type="button" class="btn btn-success">Lưu dữ liệu</button>
+            </div>
+
+            <div class="showtable">
+                <div class="overlay ">
+                  <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                </div>
+                {{inform}}
+                <table id="res" class="table">
+                    <tr>
+                        <th></th>
+                        <th>Mã khóa đào tạo</th>
+                        <th>Tên đào tạo</th>
+                    </tr>
+                    {% for x in khoadaotao %}
+                    <tr>
+                        <td>
+                            <input class="check" type="checkbox">
+                        </td>
+                        <td>
+                            <input disabled value='{{ x.makdt }}'>
+                        </td>
+                        <td style="display: none;">
+                            <input disabled value='{{ x.makdt }}'>
+                        </td>
+                        <td>
+                            <input disabled value='{{ x.tenkdt }}'>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </body>
+    <script>
+
+        window.onload = function(){
+             // Checkbox control
+             checkboxes = document.querySelectorAll('.check');
+                checkboxes.forEach((node)=>{
+                    node.onchange = function(){
+                        inputs = this.parentNode.parentNode.querySelectorAll('input');
+                        n = inputs.length;
+                        if (this.checked){
+                            for (let i=1; i < n; i++){
+                                inputs[i].disabled = false;
+                            }
+                        } else {
+                            for (let i=1; i < n; i++){
+                                inputs[i].disabled = true;
+                            }
+                        }
+                    }
+                })
+     // Onclick Update, Delete button
+     update.onclick = function(){action('modify')};
+        del.onclick = function(){action('delete')};
+        function action (action){
+            checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+            if (action=="delete"){
+                arr = []
+                checkboxes.forEach(function(node){
+                    parent = node.parentNode.parentNode;
+                    cells = parent.querySelectorAll('td');
+                    console.log(cells[2].childNodes[1].value);
+                    arr.push(cells[2].childNodes[1].value);
+
+
+                })
+                console.log(arr);
+
+                // Request to server
+                var xhttp = new XMLHttpRequest();
+                xhttp.open('POST', "{% url 'delkhoadaotao'%}");
+                xhttp.setRequestHeader("Content-type", "text/plain");
+                xhttp.send(JSON.stringify(arr));
+                xhttp.onload = () => {
+                    alert(JSON.parse(xhttp.response)['inform']);
+                    window.location.reload();
+                }
+            } else { // Modify
+                data = []
+                checkboxes.forEach(function(node){
+                    arr = [];
+                    parent = node.parentNode.parentNode;
+                    cells = parent.querySelectorAll('td');
+                    for (let i=1;i<cells.length; i++){
+                        arr.push(cells[i].childNodes[1].value);
+                    }
+                    data.push(arr);
+                })
+                console.log(data);
+                var xhttp = new XMLHttpRequest();
+                xhttp.open('POST', "{% url 'modifykhoadaotao'%}");
+                xhttp.setRequestHeader("Content-type", "text/plain");
+                xhttp.send(JSON.stringify(data));
+                xhttp.onload = () => {
+                    alert(JSON.parse(xhttp.response)['inform']);
+                }
+                window.location.reload();
+            }
+        }
+
+        add_btn.onclick = function(){
+            data = [
+                c_makdt.value,
+                c_tenkdt.value,
+            ];
+            if (c_makdt.value&&
+                c_tenkdt.value){
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open('POST', "{% url 'createkhoadaotao'%}");
+                    xhttp.setRequestHeader("Content-type", "text/plain");
+                    xhttp.send(JSON.stringify(data));
+                    xhttp.onload = () => {
+                        alert(JSON.parse(xhttp.response)['inform']);
+                        if (JSON.parse(xhttp.response)['inform']=="Success!"){
+                            window.location.reload();
+                        }
+                    }
+                } else {
+                    alert("Nhập đủ thông tin");
+                }
+
+        }
+
+        }
+
+    </script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+      {% endblock main_content %}
+      <!-- /.content -->
+    </div>
+<!--phần cuối trang-->
+<footer class="main-footer">
+      <strong>Copyright desinger &copy; {% now "Y" %}, <a href="https://www.facebook.com/pam.bap/">Hoàng Thiên</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0
+      </div>
+</footer>
+<!-- jQuery -->
+<script src="{% static "jquery/jquery.min.js"  %}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{% static "jquery-ui/jquery-ui.min.js"  %}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{% static "bootstrap/js/bootstrap.bundle.min.js"  %}"></script>
+<!-- ChartJS -->
+<script src="{% static "chart.js/Chart.min.js"  %}"></script>
+<!-- Sparkline -->
+<script src="{% static "sparklines/sparkline.js"  %}"></script>
+<!-- JQVMap -->
+<script src="{% static "jqvmap/jquery.vmap.min.js"  %}"></script>
+<script src="{% static "jqvmap/maps/jquery.vmap.usa.js"  %}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{% static "jquery-knob/jquery.knob.min.js"  %}"></script>
+<!-- daterangepicker -->
+<script src="{% static "moment/moment.min.js"  %}"></script>
+<script src="{% static "daterangepicker/daterangepicker.js"  %}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{% static "tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"  %}"></script>
+<!-- Summernote -->
+<script src="{% static "summernote/summernote-bs4.min.js"  %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static "overlayScrollbars/js/jquery.overlayScrollbars.min.js"  %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.js'  %}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{% static 'dist/js/pages/dashboard.js'  %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'dist/js/demo.js'  %}"></script>
+
+
+</nav>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+<!--biến gọi để thành hình-->
+<script type="text/javascript">
+
+    $('#btnShowKmean').click(function () {
+        {#console.log('ass')#}
+        {#console.log($('#typeR').val());#}
+
+        {#document.getElementById("result").innerHTM = '';#}
+
+        let R = $('#typeR').val();
+        {#let K = $('#typeK').val();#}
+
+        if (R.trim() === "") {
+
+            alert('R và K không được để trống');
+
+            return;
+        }
+        {#console.log(R);#}
+        {#console.log(K);#}
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+        $.ajax({
+            type: 'POST',
+            url: '/kmean',
+            data: {
+                'typeR': R,
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'table_name': $('#tableName').text(),
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log('success');
+                console.log(response);
+
+
+                var out = "<table border ='1' ><tr>";
+                out += '<th>STT</th>';
+                out += '<th>Ma Sinh vien</th>';
+                {#out += '<th>Khoang cach den tam cum</th>';#}
+
+                out += '</tr>';
+
+
+                {#console.log(response['cum']);#}
+                len = response['len'];
+                cum = response['cum'];
+                maSv = response['ma_SV'];
+                kc = response['kc_den_tam_cum'];
+                console.log(cum);
+
+                for (i = 0; i < len; i++) {
+                    out += '<tr>';
+                    out += '<td >' + cum[i] + '</td>';
+                    out += '<td >' + maSv[i] + '</td>';
+                    {#out += '<td >' + kc[i] + '</td>';#}
+                    out += '</tr>';
+                }
+                out += "</table>";
+                document.getElementById("tableContainer").innerHTML = out;
+
+            },
+            error: function (response) {
+                console.log('error');
+                // alert the error if any error occured
+                {#alert(response["responseJSON"]["error"]);#}
+            }
+        })
+    });
+
+
+    $('#btnShowPoint').click(function () {
+
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+        {#console.log(maKhoa)#}
+        {#console.log(maChuyenNganh)#}
+        $.ajax({
+            type: 'POST',
+            url: '/showpoint',
+            data: {
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log('vao success');
+                let data = response['data'];
+                let numRow = response["num_row"];
+                let numCol = response["num_col"];
+                var out = "<table border ='1' >";
+                for (i = 0; i < numRow; i++) {
+
+
+                    if (i === 0) {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<th>' + value + '</th>';
+                        }
+                        out += '</tr>';
+                    } else {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<td ><div contenteditable>' + value + '</div></td>';
+                            {#out += '<td>' + data[i][j] + '</td>';#}
+                        }
+                        out += '</tr>';
+                    }
+                }
+                out += "</table>";
+                document.getElementById("tableContainer").innerHTML = out;
+
+
+            },
+            error: function (response) {
+            }
+        })
+
+
+    });
+
+    $('#btnFilterSubject').click(function () {
+
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+
+        {#console.log(maKhoa);#}
+        {#console.log(maChuyenNganh);#}
+        $.ajax({
+            type: 'POST',
+            url: '/filterpoint',
+            data: {
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                console.log('vao success');
+                console.log(response);
+                {#print(response)#}
+                let data = response['data'];
+                let numRow = response["num_row"];
+                let numCol = response["num_col"];
+                var out = "<table border ='1'  id='tblPoint'>";
+                for (i = 0; i < numRow; i++) {
+
+
+                    if (i === 0) {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<th>' + value + '</th>';
+                        }
+                        out += '</tr>';
+                    } else {
+                        out += '<tr>';
+                        for (j = 0; j < numCol; j++) {
+                            value = data[i][j] === 'nan' ? '' : data[i][j];
+                            out += '<td ><div contenteditable>' + value + '</div></td>';
+                            {#out += '<td>' + data[i][j] + '</td>';#}
+                        }
+                        out += '</tr>';
+                    }
+                }
+                out += "</table>";
+                document.getElementById("tableContainer").innerHTML = out;
+
+
+            },
+            error: function (response) {
+                console.log('vao error');
+                {#console.log(response)#}
+                let data = response['data'];
+                let numRow = response["row"];
+                let numCol = response["col"];
+
+
+                var out = "<table border ='1' ><tr>";
+
+                {#var a = JSON.parse(response);#}
+                console.log(a);
+                for (i = 0; i < numRow; i++) {
+                    row = data[0];
+                    {#console.log(row)#}
+                }
+            }
+        })
+
+    });
+
+    $('#btnSaveCenterKC').click(function () {
+
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+        $.ajax({
+            type: 'POST',
+            url: '/savepointStudent',
+            data: {
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+                if (response['status'] === 200) {
+                    alert('Lưu thành công');
+                }
+
+            },
+            error: function (response) {
+                console.log('vao error');
+                {#console.log(response)#}
+                let data = response['data'];
+                let numRow = response["row"];
+                let numCol = response["col"];
+
+                var out = "<table border ='1' ><tr>";
+
+                {#var a = JSON.parse(response);#}
+                console.log(a);
+                for (i = 0; i < numRow; i++) {
+                    row = data[0];
+                    {#console.log(row)#}
+                }
+            }
+        })
+
+
+    })
+
+
+    $('#btnSavePoint').click(function () {
+
+
+        let maKhoa = $("#selectKhoa").val();
+        let maChuyenNganh = $("#selectChuyenNganh").val();
+        data1 = {}
+        var html_table_data = "";
+        var bRowStarted = true;
+        let i = 0;
+
+        {#console.log(i);#}
+        {#console.log(data1)#}
+        var heads = [];
+        $("#tblPoint tbody").find("th").each(function () {
+            heads.push($(this).text().trim());
+        });
+        var rows = [];
+        rows.push(heads)
+        $("#tblPoint tbody tr").each(function () {
+            cur = [];
+            $(this).find("td").each(function (i, v) {
+                cur[i] = $(this).text().trim();
+            });
+            rows.push(cur);
+            i++;
+            cur = {};
+        });
+
+        console.log(rows);
+
+        $.ajax({
+            headers: {"X-CSRFToken": '{{ csrf_token }}'},
+            type: 'POST',
+            url: '/savepoint',
+            {#contentType: 'application/json',#}
+            data: {
+                'makhoa': maKhoa,
+                'machuyenghanh': maChuyenNganh,
+                'numrow': i,
+                'datapoint': JSON.stringify(rows),
+                {#'csrfmiddlewaretoken': '{{ csrf_token }}'#}
+            },
+            success: function (response) {
+                if (response['status'] === 200) {
+                    alert('Lưu thành công');
+                }
+
+            },
+            error: function (response) {
+
+            }
+        })
+
+
+    })
+
+</script>
+
+</body>
+</html>
