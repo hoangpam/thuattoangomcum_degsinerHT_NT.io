@@ -77,9 +77,9 @@ $  cd myproject
 $  pip install -r requirements.txt
 ```
 **6.  Found setup apply uour project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions, student.**
-``
+```
 $ python manage.py migrate
-``
+```
 **7. Add the hosts**
 
 - Got to settings.py file 
@@ -90,7 +90,7 @@ ALLOWED_HOSTS = ['*']
 *No need to change on Mac.*
 
 
-**6. Now Run Server**
+**8. Now Run Server**
 
 Command for PC:
 ```python
