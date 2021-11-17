@@ -35,6 +35,7 @@
 
 Install Virtual Environment First
 ```
+$  pip install Django
 $  pip install virtualenv
 ```
 
