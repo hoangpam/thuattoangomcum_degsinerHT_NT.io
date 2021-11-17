@@ -76,8 +76,11 @@ $  cd myproject
 ```python
 $  pip install -r requirements.txt
 ```
-
-**5. Add the hosts**
+**6.  Found setup apply uour project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions, student.**
+``
+$ python manage.py migrate
+``
+**7. Add the hosts**
 
 - Got to settings.py file 
 - Then, On allowed hosts, Add [‘*’]. 
